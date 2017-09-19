@@ -53,7 +53,7 @@ export default class TableFooter extends  Component{
     } = this.props;
 
     return (
-      <div className="el-table__footer-wrapper">
+      <div className="mff-table__footer-wrapper">
         <table cellPadding={0} cellSpacing={0}>
           <colgroup>
             {

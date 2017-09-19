@@ -240,7 +240,7 @@ export default class TableHeader extends  Component{
     return (
       <table
         style={style}
-        className={this.classNames('el-table__header')}
+        className={this.classNames('mff-table__header')}
         cellPadding={0}
         cellSpacing={0}>
         <colgroup>
@@ -302,7 +302,7 @@ export default class TableHeader extends  Component{
                             column.filterable ? (
                               <span
                                 ref="popper"
-                                className="el-table__column-filter-trigger"
+                                className="mff-table__column-filter-trigger"
                                 onClick={(e)=>this.onFilter(e, column.filters, column)}>
                                 <i className="el-icon-arrow-down"></i>
                               </span>

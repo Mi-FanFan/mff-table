@@ -84,7 +84,7 @@ class BodyItem extends Component{
       const td = document.createElement('td');
 
       td.colSpan = this.props.columns.length;
-      td.className = 'el-table__expanded-cell';
+      td.className = 'mff-table__expanded-cell';
       row.appendChild(td);
 
       ReactDOM.render(this.props.columns[0].expandPannel(this.props.itemData), td);
@@ -106,7 +106,7 @@ class BodyItem extends Component{
     const classSet:Object = {
       'hover-row': this.state.hover,
       'current-row': isHiglight,
-      'el-table__row--striped': this.context.stripe && rowIndex % 2 !== 0,
+      'mff-table__row--striped': this.context.stripe && rowIndex % 2 !== 0,
     };
 
     if(rowClassName){
@@ -116,8 +116,8 @@ class BodyItem extends Component{
 
     const rootClassName = this.classNames(classSet);
     const epxandClass = this.classNames({
-      'el-table__expand-icon': true,
-      'el-table__expand-icon--expanded': this.state.expand
+      'mff-table__expand-icon': true,
+      'mff-table__expand-icon--expanded': this.state.expand
     });
 
     return (
@@ -271,7 +271,7 @@ export default class TableBody extends  Component{
       <table
         ref="root"
         style={this.style()}
-        className={this.classNames('el-table__body')}
+        className={this.classNames('mff-table__body')}
         cellPadding={0}
         cellSpacing={0}
       >
