@@ -533,7 +533,7 @@
 }
 
 .mff-table .cell {
-    white-space: normal;
+    white-space: nowrap;
     word-break: break-all;
     line-height: 24px
 }
