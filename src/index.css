@@ -414,8 +414,6 @@
 .mff-table .cell, .mff-table th > div {
     box-sizing: border-box;
     text-overflow: ellipsis;
-    padding-left: 18px;
-    padding-right: 18px
 }
 
 .mff-table::before {
