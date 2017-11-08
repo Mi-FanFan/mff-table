@@ -79,7 +79,7 @@ export default class CheckboxGroup extends Component {
     });
 
     return (
-      <div style={this.props} className={this.className('el-checkbox-group')}>
+      <div style={this.props} className={this.className('mff-checkbox-group')}>
         {children}
       </div>
     )

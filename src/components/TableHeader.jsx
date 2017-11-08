@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import throttle from 'lodash/throttle';
+import throttle from 'throttle-debounce/throttle';
 import PropTypes from 'prop-types'
 import Component from '../libs/Component'
 import Checkbox from '../checkbox';
@@ -227,7 +227,7 @@ export default class TableHeader extends Component<TableHeaderProps> {
 
     return (
       <table
-        className="el-table__header"
+        className="mff-table__header"
         cellPadding={0}
         cellSpacing={0}
         style={this.style({
@@ -302,7 +302,7 @@ export default class TableHeader extends Component<TableHeaderProps> {
                         toggleFilter={this.handleFilterClick.bind(this, column)}
                       >
                         <span
-                          className="el-table__column-filter-trigger"
+                          className="mff-table__column-filter-trigger"
                           onClick={this.handleFilterClick.bind(this, column)}
                         >
                           <i className={this.classNames('el-icon-arrow-down', { 'el-icon-arrow-up': column.filterOpened })} />

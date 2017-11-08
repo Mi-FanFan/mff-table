@@ -69,6 +69,7 @@ class App extends Component {
 
         data={this.state.data}
         stripe={true}
+        border={true}
       />
     )
   }

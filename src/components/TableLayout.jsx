@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import throttle from 'lodash/throttle';
+import throttle from 'throttle-debounce/throttle';
 import PropTypes from 'prop-types'
 import Component from '../libs/Component'
 import { addResizeListener, removeResizeListener } from '../libs/resize-event';
@@ -201,7 +201,7 @@ export default class TableLayout extends Component<TableLayoutProps, TableLayout
       const { bodyWrapper } = this.table;
       const { fixedBodyHeight } = state;
 
-      const body = bodyWrapper.querySelector('.el-table__body');
+      const body = bodyWrapper.querySelector('.mff-table__body');
       const scrollY = body.offsetHeight > fixedBodyHeight;
 
       return {

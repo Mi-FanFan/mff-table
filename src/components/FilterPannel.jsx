@@ -1,104 +1,106 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Transition, View } from '../../libs';
-import Component from '../libs/Component';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Transition from '../libs/transition'
+import View from '../libs/view'
+import Component from '../libs/Component'
 import Popper from 'popper.js'
-import Checkbox from '../checkbox';
+import Checkbox from '../checkbox'
 
 import { FilterProps, FilterState } from './Types'
 
-function getPopupContainer() {
-  const container = document.createElement('div');
-  container.className = 'el-table-poper';
-  container.style.zIndex = 999;
-  document.body.appendChild(container);
-  return container;
+function getPopupContainer () {
+  const container = document.createElement('div')
+  container.className = 'mff-table-poper'
+  container.style.zIndex = 999
+  document.body.appendChild(container)
+  return container
 }
 
 export default class FilterPannel extends Component<FilterProps, FilterState> {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.container = getPopupContainer();
-    ['handleClickOutside', 'onEnter', 'onAfterLeave'].forEach(fn => { this[fn] = this[fn].bind(this) });
+    ['handleClickOutside', 'onEnter', 'onAfterLeave'].forEach(fn => { this[fn] = this[fn].bind(this) })
 
     this.state = {
       filteredValue: props.filteredValue,
     }
   }
 
-  componentDidMount() {
-    this.renderPortal(this.renderContent(), this.container);
+  componentDidMount () {
+    this.renderPortal(this.renderContent(), this.container)
 
-    document.addEventListener('click', this.handleClickOutside);
+    document.addEventListener('click', this.handleClickOutside)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (this.props.filteredValue !== nextProps.filteredValue) {
-      this.setState({ filteredValue: nextProps.filteredValue })
+      this.setState({filteredValue: nextProps.filteredValue})
     }
   }
 
-  componentDidUpdate() {
-    this.renderPortal(this.renderContent(), this.container);
+  componentDidUpdate () {
+    this.renderPortal(this.renderContent(), this.container)
   }
 
-  componentWillUnmount() {
-    this.poperIns.destroy();
-    ReactDOM.unmountComponentAtNode(this.container);
-    document.removeEventListener('click', this.handleClickOutside);
-    document.body.removeChild(this.container);
+  componentWillUnmount () {
+    this.poperIns.destroy()
+    ReactDOM.unmountComponentAtNode(this.container)
+    document.removeEventListener('click', this.handleClickOutside)
+    document.body.removeChild(this.container)
   }
 
-  handleFiltersChange(value) {
+  handleFiltersChange (value) {
     this.setState({
       filteredValue: value
     })
   }
 
-  changeFilteredValue(value)  {
-    this.props.onFilterChange(value);
-    this.props.toggleFilter();
+  changeFilteredValue (value) {
+    this.props.onFilterChange(value)
+    this.props.toggleFilter()
   }
 
-  handleClickOutside() {
+  handleClickOutside () {
     if (this.props.visible) {
-      this.props.toggleFilter();
+      this.props.toggleFilter()
     }
   }
 
-  onEnter() {
+  onEnter () {
     this.poperIns = new Popper(this.refer, this.container, {
       placement: this.props.placement
-    });
+    })
   }
 
-  onAfterLeave() {
-    this.poperIns.destroy();
+  onAfterLeave () {
+    this.poperIns.destroy()
   }
 
-  renderPortal(element, container) {
-    ReactDOM.unstable_renderSubtreeIntoContainer(this, element, container);
+  renderPortal (element, container) {
+    ReactDOM.unstable_renderSubtreeIntoContainer(this, element, container)
   }
 
-  renderContent() {
-    const { multiple, filters, visible } = this.props;
-    const { filteredValue } = this.state;
+  renderContent () {
+    const {multiple, filters, visible} = this.props
+    const {filteredValue} = this.state
 
-    let content;
+    let content
     if (multiple) {
       content = [(
-        <div className="el-table-filter__content" key="content">
-          <Checkbox.Group value={filteredValue || []} onChange={this.handleFiltersChange.bind(this)} className="el-table-filter__checkbox-group">
+        <div className="mff-table-filter__content" key="content">
+          <Checkbox.Group value={filteredValue || []} onChange={this.handleFiltersChange.bind(this)}
+                          className="mff-table-filter__checkbox-group">
             {filters && filters.map(filter => (
-              <Checkbox value={filter.value} label={filter.text} key={filter.value} />
+              <Checkbox value={filter.value} label={filter.text} key={filter.value}/>
             ))}
           </Checkbox.Group>
         </div>
       ), (
-        <div className="el-table-filter__bottom" key="bottom">
+        <div className="mff-table-filter__bottom" key="bottom">
           <button
-            className={this.classNames({ 'is-disabled': !filteredValue || !filteredValue.length })}
+            className={this.classNames({'is-disabled': !filteredValue || !filteredValue.length})}
             disabled={!filteredValue || !filteredValue.length}
             onClick={this.changeFilteredValue.bind(this, filteredValue)}
           >
@@ -109,9 +111,9 @@ export default class FilterPannel extends Component<FilterProps, FilterState> {
       )]
     } else {
       content = (
-        <ul className="el-table-filter__list">
+        <ul className="mff-table-filter__list">
           <li
-            className={this.classNames('el-table-filter__list-item', { 'is-active': !filteredValue })}
+            className={this.classNames('mff-table-filter__list-item', {'is-active': !filteredValue})}
             onClick={this.changeFilteredValue.bind(this, null)}
           >
             全部
@@ -119,7 +121,7 @@ export default class FilterPannel extends Component<FilterProps, FilterState> {
           {filters && filters.map(filter => (
             <li
               key={filter.value}
-              className={this.classNames('el-table-filter__list-item', { 'is-active': filter.value === filteredValue })}
+              className={this.classNames('mff-table-filter__list-item', {'is-active': filter.value === filteredValue})}
               onClick={this.changeFilteredValue.bind(this, filter.value)}
             >
               {filter.text}
@@ -137,8 +139,8 @@ export default class FilterPannel extends Component<FilterProps, FilterState> {
       >
         <View show={visible}>
           <div
-            className={'el-table-filter'}
-            ref={(dom) => { this.poper = dom; }}
+            className={'mff-table-filter'}
+            ref={(dom) => { this.poper = dom }}
             onClick={(e) => { e.nativeEvent.stopImmediatePropagation() }}  // prevent document click event
           >
             {content}
@@ -147,9 +149,10 @@ export default class FilterPannel extends Component<FilterProps, FilterState> {
       </Transition>
     )
   }
-  render() {
+
+  render () {
     return React.cloneElement(this.props.children, {
-      ref: (dom) => { this.refer = dom; }
-    });
+      ref: (dom) => { this.refer = dom }
+    })
   }
 }

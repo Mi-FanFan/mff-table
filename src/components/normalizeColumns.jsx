@@ -18,7 +18,7 @@ const defaults = {
     width: 48,
     minWidth: 48,
     realWidth: 48,
-    className: 'el-table-column--selection',
+    className: 'mff-table-column--selection',
   },
   expand: {
     width: 48,
@@ -36,7 +36,7 @@ const forced = {
   expand: {
     sortable: false,
     resizable: false,
-    className: 'el-table__expand-column'
+    className: 'mff-table__expand-column'
   },
   index: {
     sortable: false
@@ -75,7 +75,7 @@ export default function normalizeColumns(columns: Array<Column>, tableIDSeed: nu
         minWidth = 80;
       }
 
-      const id = `el-table_${tableIDSeed}_column_${columnIDSeed++}`;
+      const id = `mff-table_${tableIDSeed}_column_${columnIDSeed++}`;
 
       _column = Object.assign({
         id,

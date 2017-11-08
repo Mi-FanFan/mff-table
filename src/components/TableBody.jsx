@@ -114,8 +114,8 @@ export default class TableBody extends Component<TableBodyProps> {
     if (type === 'expand') {
       return (
         <div
-          className={this.classNames('el-table__expand-icon ', {
-            'el-table__expand-icon--expanded': this.context.store.isRowExpanding(row, rowKey)
+          className={this.classNames('mff-table__expand-icon ', {
+            'mff-table__expand-icon--expanded': this.context.store.isRowExpanding(row, rowKey)
           })}
           onClick={this.handleExpandClick.bind(this, row, rowKey)}
         >
@@ -147,7 +147,7 @@ export default class TableBody extends Component<TableBodyProps> {
     const columnsHidden = store.columns.map((column, index) => this.isColumnHidden(index));
     return (
       <table
-        className="el-table__body"
+        className="mff-table__body"
         cellPadding={0}
         cellSpacing={0}
         style={this.style({
@@ -167,8 +167,8 @@ export default class TableBody extends Component<TableBodyProps> {
             <tr
               key={rowKey}
               style={this.getRowStyle(row, rowIndex)}
-              className={this.className('el-table__row', {
-                'el-table__row--striped': props.stripe && rowIndex % 2 === 1,
+              className={this.className('mff-table__row', {
+                'mff-table__row--striped': props.stripe && rowIndex % 2 === 1,
                 'hover-row': store.hoverRow === rowIndex,
                 'current-row': props.highlightCurrentRow && (props.currentRowKey === rowKey || store.currentRow === row)
               }, typeof props.rowClassName === 'string'
@@ -202,7 +202,7 @@ export default class TableBody extends Component<TableBodyProps> {
             <tr>
               <td
                 colSpan={store.columns.length}
-                className="el-table__expanded-cell"
+                className="mff-table__expanded-cell"
               >
                 {typeof props.renderExpanded === 'function' && props.renderExpanded(row, rowIndex)}
               </td>
