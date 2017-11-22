@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
 import throttle from 'throttle-debounce/throttle';
 import PropTypes from 'prop-types'
 import Component from '../libs/Component'

@@ -1,15 +1,13 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
 import type { _Column } from "./Types";
-
-const _document = (document: any);
 
 let scrollBarWidth: ?number;
 
 export function getScrollBarWidth(): ?number {
   if (scrollBarWidth !== undefined) return scrollBarWidth;
-  const dom = _document.createElement('div');
-  const body = _document.body || dom;
+  const dom = document.createElement('div');
+  const body = document.body || dom;
 
   dom.style.visibility = 'hidden';
   dom.style.width = '100px';

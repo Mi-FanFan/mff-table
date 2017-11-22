@@ -11,8 +11,6 @@ import type {
   _Column,
 } from './Types';
 
-const _document = (document: any);
-
 export default class TableHeader extends Component<TableHeaderProps> {
   static contextTypes = {
     store: PropTypes.any,
@@ -51,7 +49,7 @@ export default class TableHeader extends Component<TableHeaderProps> {
       }
 
       const rect = target.getBoundingClientRect();
-      const bodyStyle = _document.body.style;
+      const bodyStyle = document.body.style;
       if (rect.width > 12 && rect.right - event.pageX < 8) {
         bodyStyle.cursor = 'col-resize';
         this.draggingColumn = column;
@@ -85,8 +83,8 @@ export default class TableHeader extends Component<TableHeaderProps> {
       resizeProxy.style.visibility = 'visible';
       resizeProxy.style.left = startLeft + 'px';
 
-      _document.onselectstart = () => false;
-      _document.ondragstart = () => false;
+      document.onselectstart = () => false;
+      document.ondragstart = () => false;
 
       const handleMouseMove = (event: MouseEvent) => {
         const deltaLeft = event.clientX - startMouseLeft;
@@ -105,12 +103,12 @@ export default class TableHeader extends Component<TableHeaderProps> {
           this.dragging = false;
           this.draggingColumn = null;
 
-          _document.body.style.cursor = '';
+          document.body.style.cursor = '';
           resizeProxy.style.visibility = 'hidden';
-          _document.removeEventListener('mousemove', handleMouseMove);
-          _document.removeEventListener('mouseup', handleMouseUp);
-          _document.onselectstart = null;
-          _document.ondragstart = null;
+          document.removeEventListener('mousemove', handleMouseMove);
+          document.removeEventListener('mouseup', handleMouseUp);
+          document.onselectstart = null;
+          document.ondragstart = null;
           setTimeout(() => {
             columnEl.classList.remove('noclick');
           });
@@ -120,8 +118,8 @@ export default class TableHeader extends Component<TableHeaderProps> {
         }
       };
 
-      _document.addEventListener('mousemove', handleMouseMove);
-      _document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
     }
   }
 
